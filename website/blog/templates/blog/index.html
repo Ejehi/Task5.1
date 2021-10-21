@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Festive&display=swap');
+    body{
+        font-family: 'Raleway';
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    }
+
+
+    h1{
+        margin: 1rem;
+        font-size: 60px;
+        text-align: center;
+        font-family: 'Festive', cursive;
+    }
+
+    h2{
+        text-align: center;
+        margin: 1rem;
+        font-size: 30px;
+    }
+    section{
+        margin-top: 5rem;
+    }
+    .cards-container{
+        width: 90%;
+        margin:  auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .card{
+        display: flex;
+        width: 40%;
+        flex-direction: column;
+        background-color: #FDEBFF;
+        border-radius: 13px;
+        padding: 1.5rem 2rem;
+        margin: 1rem;
+    }
+
+    img {
+        width: 350px;
+        height: 300px;
+        margin: 2px auto;
+    }
+    
+    button{
+        background-color: #006fa3;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: .5rem;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <main>
+        <h1>
+            My Blog App</h1> 
+    </main>
+   
+        <section>
+            <h2>Blog Posts</h2>
+            {% if posts %}
+                <div class="cards-container">
+                    {% for post in posts %}
+                        <div class="card">
+                            <img src="{{ post.image.url }}" alt="...">
+                            <div>
+                                <h3> {{post.title}} </h3>
+                                <p> {{post.author}} </p>
+                            </div>
+                            <p> {{post.content}} </p>
+                            <a href="{% url 'blog:detail' post.id%}"><button>Read More</button></a>
+                        </div>
+                    {% endfor %}
+                </div>  
+            {% else %}
+                <p>No posts to display</p>
+            
+            {% endif %}
+            
+        </section>
+ 
+</body>
+</html>
